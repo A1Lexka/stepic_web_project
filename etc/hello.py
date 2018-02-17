@@ -7,6 +7,6 @@ CONFIG = {
         '--workers=16',
         '--timeout=60',
 		'--log-level=debug',
-        'hello',
+        'hello:simple_app',
     ),
 }
