@@ -16,7 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-urlpatterns = [
+from ask.views import found, not_found, init25
+from qa.views import index, popular, ask, login_view, signup
+
+urlpatterns = [ 
     url(r'^$', 'test'),                                                              
     url(r'^login/.*$', 'test', name='login'),                                    
     url(r'^signup/.*$', 'test', name='signup'),                                   
