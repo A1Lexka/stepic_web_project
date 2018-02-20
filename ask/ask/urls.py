@@ -16,8 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from ask.views import found, not_found, init25
-from qa.views import index, popular, ask, login_view, signup
+from qa.views import test, main_page, question_page, popular_questions, ask_page, signup, login_page
 
 urlpatterns = [ 
     url(r'^$', 'test'),                                                              
