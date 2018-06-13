@@ -3,16 +3,23 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Question(models.Model):
+    objects = QuestionManager()
     title = models.CharField(max_length=225)
     text = models.TextField()
     added_at = models.DateField(blank=True)
     rating = models.IntegerField(null=True)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     likes = models.ManyToManyField(User, related_name="q_to_likes")
-    def __str__(self):
-        return self.title
-    def get_url(self):
-        return "/question/{}/".format(self.id)
+    def new(self):
+        return self.order_by('-added_at')
+    def popular(self):
+        return self.order_by('-rating')
+    
+    class QuestionManager(models.Manager):                                          
+        def new():                                                              
+                pass                                                            
+        def popular():                                                          
+                pass 
       
 class Answer(models.Model):
     text = models.TextField()
