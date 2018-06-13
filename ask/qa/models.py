@@ -16,10 +16,10 @@ class Question(models.Model):
         return self.order_by('-rating')
     
     class QuestionManager(models.Manager):                                          
-        def new():                                                              
-                pass                                                            
-        def popular():                                                          
-                pass 
+        def new(self):
+                return self.order_by('-added_at')                                                           
+        def popular(self):
+                return self.order_by('-rating')
       
 class Answer(models.Model):
     text = models.TextField()
