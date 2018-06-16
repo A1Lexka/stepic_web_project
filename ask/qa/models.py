@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from datetime import timedelta
 
 # Create your models here.
 class QuestionManager(models.Manager):                                          
@@ -16,9 +18,10 @@ class Question(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     likes = models.ManyToManyField(User, related_name="q_to_likes")
     objects = QuestionManager()
-    class Meta:
-        db_table = 'blogposts'
-        ordering = ['-creation_date']
+    def __unicode__(self):
+          return self.title
+    def get_url(self):
+          return "/question/{}".format(self.id)
     
 class Answer(models.Model):
     text = models.TextField()
