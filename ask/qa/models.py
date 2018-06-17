@@ -13,8 +13,8 @@ class QuestionManager(models.Manager):
 class Question(models.Model):
     title = models.CharField(default="", max_length=225)
     text = models.TextField(default="")
-    added_at = models.DateTimeField(blank = True, auto_now_add=True)
-    rating = models.IntegerField(default = 0)
+    added_at = models.DateTimeField(null=True, auto_now_add=True)
+    rating = models.IntegerField(null=True)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     likes = models.ManyToManyField(User, related_name="q_to_likes")
     objects = QuestionManager()
