@@ -11,8 +11,8 @@ class QuestionManager(models.Manager):
         return self.order_by('-rating')
 
 class Question(models.Model):
-    title = models.CharField(default="", max_length=225)
-    text = models.TextField(default="")
+    title = models.CharField(default="", null=True, max_length=225)
+    text = models.TextField(default="", null=True)
     added_at = models.DateTimeField(blank=True, null=True, auto_now_add=True)
     rating = models.IntegerField(default=0, null=True)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
