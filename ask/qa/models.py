@@ -13,10 +13,10 @@ class QuestionManager(models.Manager):
 class Question(models.Model):
     title = models.CharField(default="", max_length=225)
     text = models.TextField(default="")
-    added_at = models.DateTimeField(null=True, auto_now_add=True)
-    rating = models.IntegerField(null=True)
+    added_at = models.DateTimeField(blank=True, auto_now_add=True)
+    rating = models.IntegerField(default=0)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    likes = models.ManyToManyField(User, related_name="q_to_likes")
+    likes = models.ManyToManyField(User, related_name="likes_set")
     objects = QuestionManager()
     def __unicode__(self):
           return self.title
