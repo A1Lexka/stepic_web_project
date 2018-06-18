@@ -11,12 +11,12 @@ class QuestionManager(models.Manager):
         return self.order_by('-rating')
 
 class Question(models.Model):
-    title = models.CharField(default="", null=True, max_length=225)
-    text = models.TextField(default="", null=True)
+    title = models.CharField(null=True, max_length=225)
+    text = models.TextField(null=True)
     added_at = models.DateTimeField(blank=True, null=True, auto_now_add=True)
     rating = models.IntegerField(default=0, null=True)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    likes = models.ManyToManyField(User, related_name="question_like_user")
+    likes = models.ManyToManyField(User, null=True, related_name="question_like_user")
     objects = QuestionManager()
     def __unicode__(self):
           return self.title
@@ -24,7 +24,7 @@ class Question(models.Model):
           return "/question/{}".format(self.id)
     
 class Answer(models.Model):
-    text = models.TextField(default="")
+    text = models.TextField(null=True)
     added_at = models.DateTimeField(null=True, auto_now_add=True)
     question = models.ForeignKey(Question, null=True, on_delete=models.SET_NULL)
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
