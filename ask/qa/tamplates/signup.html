@@ -1,0 +1,12 @@
+<form method="post" action="{% url 'qa.views.signup' %}">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.label_tag }} {{ field }}
+            {{ field.errors }}
+        </div>
+    {% endfor %}
+
+    <input type="submit" value="signup"/>
+    <input type="hidden" name="next" value="{{ next }}"/>
+</form>
