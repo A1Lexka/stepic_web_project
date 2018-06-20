@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="ru">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>{{ question }}</h1>
+
+<p>{{ question.text }}</p>
+<ul>
+    {% for answer in question.answer_set.all %}
+        <li>{{ answer.text }}</li>
+    {% endfor %}
+</ul>
+
+<form action="/answer/" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.label_tag }} {{ field }}
+            {{ field.errors }}
+        </div>
+    {% endfor %}
+    <input type="submit" value="Отправить"/>
+</form>
+
+</body>
+</html>
