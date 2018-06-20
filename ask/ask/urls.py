@@ -19,12 +19,12 @@ from django.contrib import admin
 from qa.views import test
 
 urlpatterns = [ 
-    url(r'^$', test),                                                              
+    url(r'^$', 'qa.views.home', name='home'),                                                              
     url(r'^login/.*$', test, name='login'),                                    
-    url(r'^signup/.*$', test, name='signup'),                                   
-    url(r'^question/(?P<id>[0-9]+)/$', test, name='question'),                 
-    url(r'^ask/.*$', test, name='ask'),                                         
-    url(r'^popular/.*', test, name='popular'),                                 
-    url(r'^new/.*', test, name='new'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^signup/.*$', test, name='signup'),                                                                        
+    url(r'^popular/', 'qa.views.popular', name='popular'),                              
+    url(r'^new/', 'qa.views.ask', name='new'),
+    url(r'^ask/', 'qa.views.ask', name='ask'),
+    url(r'^answer/', 'qa.views.answer', name='answer'),
+    url(r'^question/(?P<q_id>[0-9]+)/$', 'qa.views.q_id', name='q_id'),
 ]
