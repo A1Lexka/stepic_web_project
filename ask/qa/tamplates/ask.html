@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+<head lang="ru">
     <meta charset="UTF-8">
-    <title>Ask a new question!</title>
+    <title></title>
 </head>
 <body>
-    <form method="post" action="/ask/">
-        <fieldset>
-{% csrf_token %}
-{{ form.as_p }}
-        </fieldset>
-        <button type="submit">Сохранить</button>
-    </form>
-    <div>User: {{ user }}</div>
-    <div>Session: {{ session }}</div>
-    <div><a href="/">Return to main page</a></div>
+
+<form action="/ask/" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.label_tag }} {{ field }}
+            {{ field.errors }}
+        </div>
+    {% endfor %}
+    <input type="submit" value="Отправить"/>
+</form>
+
 </body>
 </html>
