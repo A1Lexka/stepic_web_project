@@ -1,6 +1,9 @@
-from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse 
+ def test(request, *args, **kwargs):
+     return HttpResponse('OK')
+from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
