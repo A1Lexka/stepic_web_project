@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>Вопросы</h1>
+{% for question in questions %}
+    <a href="/question/{{ question.id }}/">{{ question }}</a><br>
+{% endfor %}
+
+{% if questions.has_previous %}
+    <a href="?page={{ questions.previous_page_number }}">previous</a>
+{% endif %}
+
+<span class="current">
+    Page {{ questions.number }} of {{ questions.paginator.num_pages }}.
+</span>
+
+{% if questions.has_next %}
+    <a href="?page={{ questions.next_page_number }}">next</a>
+{% endif %}
+
+</body>
+</html>
