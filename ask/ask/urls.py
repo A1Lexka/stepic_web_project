@@ -17,6 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from qa.views import test
+from qa.views import home
+from qa.views import popular
+from qa.views import question
 
 urlpatterns = [
     url(r'^$', test), 
