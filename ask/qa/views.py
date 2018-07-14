@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
+from qa.models import Question, Answer
 
 from django.http import HttpResponse 
 def test(request, *args, **kwargs):
