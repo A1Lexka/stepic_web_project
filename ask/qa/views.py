@@ -10,15 +10,22 @@ def test(request, *args, **kwargs):
 
 def index(request):
     try:
-        page = int(request.GET.get("page"))
-    except ValueError:
+        limit = int(request.GET.get('limit', 10))
+    except:
+        limit = 10
+    try:
+        page = int(request.GET.get('page', 1))
+    except:
         page = 1
-    except TypeError:
-        page = 1
-    questions = Question.objects.all().order_by('-id')
-    paginator = Paginator(questions, 10)
+    questions = Question.objects.all()
+    paginator = Paginator(questions, limit)
     page = paginator.page(page)
-    return render(request, 'qa/index.html', context)
+    return render(request, 'index.html',
+                   {'title': 'Latest',
+                   'paginator': paginator,
+                   'questions': page.object_list,
+                   'page': page,})
+
 
 def popular(request):
     try:
