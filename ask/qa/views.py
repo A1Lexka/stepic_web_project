@@ -17,7 +17,7 @@ def index(request):
         page = int(request.GET.get('page', 1))
     except:
         page = 1
-    questions = Question.objects.all()
+    questions = Question.objects.all().order_by('new')
     paginator = Paginator(questions, limit)
     page = paginator.page(page)
     return render(request, 'index.html',
@@ -36,7 +36,7 @@ def popular(request):
         page = int(request.GET.get('page', 1))
     except:
         page = 1
-    questions = Question.objects.all()
+    questions = Question.objects.all().order_by('popular')
     paginator = Paginator(questions, limit)
     page = paginator.page(page)
     return render(request, 'popular.html',
